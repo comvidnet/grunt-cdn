@@ -125,13 +125,15 @@ Job.prototype._replace = function (resource) {
     before: resourceUrl.pathname,
     after: src
   });
-  return grunt.template.process('<%= url %><%= search %><%= hash %>', {
-    data: {
-    url: src,
-    hash: (resourceUrl.hash || ''), // keep the original hash too
-    search: (resourceUrl.search || '') // keep the original querystring
-    }
-  });
+  return src + (resourceUrl.hash || '') + (resourceUrl.search || '');
+
+//   return grunt.template.process('<%= url %><%= search %><%= hash %>', {
+//     data: {
+//     url: src,
+//     hash: (resourceUrl.hash || ''), // keep the original hash too
+//     search: (resourceUrl.search || '') // keep the original querystring
+//     }
+//   });
 };
 
 Job.prototype.run = function () {
